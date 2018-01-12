@@ -13,7 +13,7 @@
  */
 @interface PLVReportManager : NSObject
 
-// 获取SDK 版本
+// 获取SDK版本
 + (NSString *)getSDKVersion;
 
 // 播放器id

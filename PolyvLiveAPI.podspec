@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "PolyvLiveAPI"
-  s.version      = "0.1.2"
+  s.version      = "0.1.3"
   s.summary      = "Polyv iOS 直播观看、推流、聊天室相关接口."
 
   # This description is used to generate tags and improve search results.
@@ -131,6 +131,7 @@ Pod::Spec.new do |s|
   #  you can include multiple dependencies to ensure it works.
 
   s.requires_arc = true
+  # s.user_target_xcconfig = { 'OTHER_LDFLAGS' => '-ObjC' }
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
