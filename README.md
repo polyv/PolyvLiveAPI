@@ -21,6 +21,15 @@ end
 
 ## 历史版本
 
+### 0.2.0+180125
+
+- 重大接口更新（重构）
+- Polyv iOS 直播观看、推流、云课堂、聊天室等相关接口.
+
+直接下载：[0.2.0](http://repo.polyv.net/ios/download/liveAPI/0.2.0/PLVLiveAPI.framework.zip)
+
+
+
 ### 0.1.4+180122
 
 - 移除内部GTMBase64第三方库
@@ -40,7 +49,6 @@ end
 
 - Qos接口版本号更新：iOS-livePlayerSDK2.2.0+180111
 
-  ​
 
 直接下载：[0.1.3](http://repo.polyv.net/ios/download/liveAPI/0.1.3/PLVLiveAPI.framework.zip)
 

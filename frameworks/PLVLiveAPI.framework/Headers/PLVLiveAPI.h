@@ -1,22 +1,274 @@
 //
 //  PLVLiveAPI.h
-//  PLVLiveAPI
+//  PLVLiveSDK
 //
-//  Created by ftao on 2017/1/4.
-//  Copyright © 2017年 easefun. All rights reserved.
+//  Created by ftao on 24/10/2017.
+//  Copyright © 2017 easefun. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "PLVChannel.h"
-#import "PLVSettings.h"
-#import "PLVReportManager.h"
+#import <Foundation/Foundation.h>
+#import "PLVLiveConfig.h"
+#import "PLVLiveChannel.h"
+#import "PLVPushChannel.h"
 
-//! Project version number for PLVLiveAPI.
-FOUNDATION_EXPORT double PLVLiveAPIVersionNumber;
+/// SDK 通用错误码
+typedef NS_ENUM(NSInteger, PLVLiveErrorCode) {
+    /// 参数无效/非法
+    PLVLiveErrorCodeParamInvalid                = -10000,
+    
+    /// 网络请求错误
+    PLVLiveErrorCodeNetworkError                = -10010,
+    /// 服务器响应非200
+    PLVLiveErrorCodeResponseCodeNot200          = -10011,
+    /// 服务器响应403
+    PLVLiveErrorCodeResponseCode403             = -10012,
+    
+    /// JSON解析失败
+    PLVLiveErrorCodeJsonDecodeFailure           = -10020,
+    /// 加密JSON解析失败
+    PLVLiveErrorCodeEncodeJsonDecodeFailure     = -10021,
+    /// 解码失败(异常)
+    PLVLiveErrorCodeDecodeFailure               = -10022,
+    
+    /* -- 以下主要为服务器对参数验证不通过 -- */
+    /// 登录失败(登录接口)
+    PLVLiveErrorCodeLoginFailure                = -10030,
+    /// 请求失败
+    PLVLiveErrorCodeRequestFailure              = -10031,
+    /// 设置失败
+    PLVLiveErrorCodeSettingFailure              = -10032,
+    /// 授权验证失败
+    PLVLiveErrorCodeAuthFailure                 = -10033,
+    
+    /// 未知类型
+    PLVLiveErrorCodeUnknown                     = -9999
+};
 
-//! Project version string for PLVLiveAPI.
-FOUNDATION_EXPORT const unsigned char PLVLiveAPIVersionString[];
+/** 返回 SDK 通用错误码对应的字符串符号*/
+NSString *NameStringWithLiveErrorCode(PLVLiveErrorCode errorCode);
 
-// In this header, you should import all the public headers of your framework using statements like #import <PLVLiveAPI/PublicHeader.h>
+/// 直播状态
+typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
+    /// 直播流状态未知
+    PLVLiveStreamStateUnknown               = -1,
+    /// 无直播流
+    PLVLiveStreamStateNoStream              = 0,
+    /// 直播中
+    PLVLiveStreamStateLive                  = 1
+};
 
+/**
+ 直播相关接口，以下所有接口回调都在主线程中
+ */
+@interface PLVLiveAPI : NSObject
 
+#pragma mark -  直播观看相关接口
+
+/**
+ 获取直播频道信息
+
+ @param userId 用户名
+ @param channelId 频道号
+ @param completion 请求完成，参数不能为 nil
+ @param failure 请求失败
+ */
++ (void)loadChannelInfoWithUserId:(NSString *)userId
+                        channelId:(NSUInteger)channelId
+                       completion:(void (^)(PLVLiveChannel *channel))completion
+                          failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+
+/**
+ 同上接口；backup，缓存时间较短
+ */
++ (void)loadChannelInfo_BUWithUserId:(NSString *)userId
+                           channelId:(NSUInteger)channelId
+                          completion:(void (^)(PLVLiveChannel *channel))completion
+                             failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+
+/**
+ 根据流名获取当前流状态
+
+ @param stream 流名
+ @param completion 请求完成，参数不能为 nil
+ @param failure 请求失败
+ */
++ (void)isLiveWithStream:(NSString *)stream
+              completion:(void(^)(PLVLiveStreamState streamState))completion
+                 failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+
+/**
+ 根据频道号获取当前流状态（是否直播中及直播模式）
+
+ @param channelId 频道号
+ @param stream 流名
+ @param completion 请求完成，参数不能为 nil
+        mode 推流模式：ppt(云课堂推流)/alone(直播助手推流)
+ @param failure 请求失败
+ */
++ (void)getStreamStatusWithChannelId:(NSUInteger)channelId
+                              stream:(NSString *)stream
+                          completion:(void(^)(PLVLiveStreamState streamState, NSString *mode))completion
+                             failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+
+/**
+ 获取频道咨询提问菜单状态
+
+ @param channelId 频道号
+ @param completion 获取成功，参数不能为 nil
+ @param failure 获取失败
+ */
++ (void)getChannelInfoWithQuestionMenuStatus:(NSUInteger)channelId
+                                  completion:(void(^)(BOOL isOn))completion
+                                     failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+
+#pragma mark -  直播推流相关接口
+
+/**
+ 获取推流信息
+
+ @param channelId 频道号
+ @param password 密码
+ @param completion 请求完成，参数不能为 nil
+ @param failure 请求失败
+ */
++ (void)loadStreamerInfoWithChannelId:(NSUInteger)channelId
+                             password:(NSString *)password
+                           completion:(void(^)(PLVPushChannel *channel))completion
+                              failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+
+/**
+ 设置推流为单流模式
+
+ @param channelId 频道号
+ @param stream 当前频道号的流名
+ @param success 设置成功，参数不能为 nil
+ @param failure 设置失败
+ */
++ (void)configAloneStreamModeWithChannelId:(NSUInteger)channelId
+                                    stream:(NSString *)stream
+                                   success:(void (^)(NSString *sessionId))success
+                                   failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+
+#pragma mark - 小班课相关接口
+
+/**
+ 效验验证码接口
+
+ @param channelId 频道号
+ @param invitationCode 邀请码
+ @param success 验证成功，参数不能为 nil
+ @param failure 验证失败，PLVLiveErrorCode: ParamInvalid、NetworkError、ResponseCodeNot200、AuthFailure、JsonDecodeFailure
+ */
++ (void)requestAuthorizationForInteractiveClassWithChannelId:(NSUInteger)channelId
+                                               invitaionCode:(NSString *)invitationCode
+                                                     success:(void (^)(NSString *data))success
+                                                     failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+
+#pragma mark - Socket、连麦授权接口
+
+/**
+ Socket、连麦授权接口
+
+ @param channelId 频道号
+ @param appId Polyv直播后台“API设置“中appId参数（用户参数）
+ @param appSecret Polyv直播后台“API设置“中appSecret参数（用户参数）
+ @param success 授权完成，参数不能为 nil
+ @param failure 授权失败，PLVLiveErrorCode: ParamInvalid、NetworkError、ResponseCodeNot200、AuthFailure、EncodeJsonDecodeFailure、DecodeFailure、JsonDecodeFailure
+ */
++ (void)requestAuthorizationForLinkingSocketWithChannelId:(NSUInteger)channelId
+                                                    Appld:(NSString *)appId
+                                                appSecret:(NSString *)appSecret
+                                                  success:(void (^)(NSDictionary *responseDict))success
+                                                  failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+
+/**
+ SocketIO心跳请求（废弃，SocketIO内部处理）
+
+ @param socketId Socket Id
+ @param success 请求成功
+ @param failure 请求失败
+ */
++ (void)socketIOHeartbeatRequestWithSocketId:(NSString *)socketId
+                                     success:(void (^)(NSString *content))success
+                                     failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+#pragma mark - 聊天室相关
+
+/**
+ 获取聊天室历史记录
+
+ @param roomId 房间号/频道号
+ // startIndex 为 0 endIndex 为 -1 时，返回全部历史记录
+ @param startIndex 开始下标
+ @param endIndex 结束下标
+ @param completion 请求完成，参数不能为 nil
+ @param failure 请求失败
+ */
++ (void)requestChatRoomHistoryWithRoomId:(NSUInteger)roomId
+                              startIndex:(NSUInteger)startIndex
+                                endIndex:(NSInteger)endIndex
+                              completion:(void (^)(NSArray *historyList))completion
+                                 failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+
+/**
+ 获取聊天室所有在线成员列表
+
+ @param roomId 房间号/频道号
+ @param completion 请求完成，参数不能为 nil
+ @param failure 请求失败
+ */
++ (void)requestChatRoomListUsersWithRoomId:(NSUInteger)roomId
+                                completion:(void (^)(NSDictionary *listUsers))completion
+                                   failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+
+#pragma mark - 连麦相关
+
+/**
+ 获取连麦状态
+
+ @param roomId 房间号/频道号
+ @param completion 请求完成，参数不能为 nil
+        status 连麦状态：open(打开)/close(关闭)
+        type 连麦类型：video(视频)/audio(音频)
+ @param failure 请求失败
+ */
++ (void)requestLinkMicStatusWithRoomId:(NSUInteger)roomId
+                            completion:(void (^)(NSString *status, NSString *type))completion
+                               failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+
+/**
+ 获取连麦在线人员列表
+ 
+ @param roomId 房间号/频道号
+ @param completion 请求完成，参数不能为 nil
+ @param failure 请求失败
+ */
++ (void)requestLinkMicOnlineListWithRoomId:(NSUInteger)roomId
+                                completion:(void (^)(NSArray *onlineList))completion
+                                   failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+
+#pragma mark - 云课堂相关
+
+/**
+ 获取PPT的图片数据
+
+ @param autoId PPT的Id
+ @param completion 获取成功，参数不能为 nil
+ @param failure 获取失败
+ */
++ (void)requestPPTResourceInfoWithAutoId:(NSInteger)autoId
+                              completion:(void (^)(NSDictionary *responseDict))completion
+                                 failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+
+/**
+ 中途进入或回看PPT时请求接口
+
+ @param roomId 房间/频道号
+ @param sessionId 场次 id
+ @param completion 获取成功，参数不能为 nil
+ @param failure 获取失败
+ */
++ (void)requestPPTContentWithRoomId:(NSUInteger)roomId
+                          sessionId:(NSString *)sessionId
+                         completion:(void (^)(NSArray *contentlist))completion
+                            failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+@end
