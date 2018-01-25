@@ -2,7 +2,7 @@
 
 当前版本：
 
-- PolyvLiveAPI ~ [0.1.3](http://repo.polyv.net/ios/download/liveAPI/0.1.3/PLVLiveAPI.framework.zip)
+- PolyvLiveAPI ~ 0.1.4
 
 Podfile 中添加
 
@@ -21,7 +21,16 @@ end
 
 ## 历史版本
 
-### v0.1.3+180112
+### 0.1.4+180122
+
+- 移除内部GTMBase64第三方库
+- 修复同Polyv点播SDK的方法名冲突问题
+
+直接下载：[0.1.4](http://repo.polyv.net/ios/download/liveAPI/0.1.4/PLVLiveAPI.framework.zip)
+
+
+
+### 0.1.3+180112
 
 - 新增获取频道咨询提问菜单状态接口
 
@@ -39,7 +48,7 @@ CocoaPods： `pod 'PolyvLiveAPI', '~> 0.1.3'`
 
 
 
-### v0.1.2+180102
+### 0.1.2+180102
 
 - Qos接口版本号更新：iOS-livePlayerSDK2.1.2.180102
 
