@@ -29,8 +29,26 @@
 + (void)reportError:(NSString *)pid uid:(NSString *)uid channelId:(NSString *)channelId session_id:(NSString *)session_id param1:(NSString *)param1 param2:(NSString *)param2 param3:(NSString *)param3 param4:(NSString *)param4 param5:(NSString *)param5 uri:(NSString *)uri status:(NSString *)status errorcode:(NSString *)errorcode errormsg:(NSString *)errormsg;
 
 /**
- 播放中
+ 播放信息统计（v2）
+
+ @param pid 播放器Id，每次播放产生的唯一Id
+ @param uid 用户Id
+ @param cid 频道Id
+ @param flow 本次播放累积加载流量大小，单位：bytes
+ @param pd 视频播放时长，观众真实观看的累计时长(不能为0)，单位：秒
+ @param sd 停留时长，播放器加载完成后开始计算，单位：秒
+ @param session_id 播放场次Id
+ @param param1 自定义参数1，统计后台用户Id
+ @param param2 自定义参数2，统计后台观众昵称
+ @param param3 自定义参数3，统计后台直播/回放（值为live/vod）
+ @param param4 自定义参数4
+ @param param5 自定义参数5
  */
-+ (void)stat:(NSString*)pid uid:(NSString*)uid cid:(NSString*)cid flow:(long)flow pd:(int)pd sd:(int)sd cts:(NSTimeInterval)cts duration:(int)duration;
++ (void)playStatus:(NSString*)pid uid:(NSString*)uid cid:(NSUInteger)cid flow:(long)flow pd:(int)pd sd:(int)sd session_id:(NSString *)session_id param1:(NSString*)param1 param2:(NSString*)param2 param3:(NSString*)param3 param4:(NSString*)param4 param5:(NSString*)param5;
+
+/**
+ 播放信息统计（v1废弃）
+ */
++ (void)stat:(NSString*)pid uid:(NSString*)uid cid:(NSString*)cid flow:(long)flow pd:(int)pd sd:(int)sd cts:(NSTimeInterval)cts duration:(int)duration __deprecated;
 
 @end

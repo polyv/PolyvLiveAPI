@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+/// 暖场类型
+typedef NS_ENUM(NSUInteger, PLVLiveCoverType) {
+    /// 无暖场
+    PLVLiveCoverTypeNone,
+    /// 图片类型
+    PLVLiveCoverTypeImage,
+    /// 视频类型
+    PLVLiveCoverTypeVideo,
+};
+
 /**
  直播观看频道信息
  */
@@ -17,6 +27,8 @@
 @property (nonatomic, copy, readonly) NSNumber *channelId;
 /// 直播用户 Id
 @property (nonatomic, copy, readonly) NSString *userId;
+/// 直播场次
+@property (nonatomic, copy, readonly) NSString *sessionId;
 /// 直播频道名称
 @property (nonatomic, copy, readonly) NSString *name;
 /// 直播 FLV 地址
@@ -25,6 +37,13 @@
 @property (nonatomic, copy, readonly) NSString *m3u8Url;
 /// 直播流名称
 @property (nonatomic, copy, readonly) NSString *stream;
+
+/// 暖场类型
+@property (nonatomic, readonly) PLVLiveCoverType coverType;
+/// 暖场资源地址
+@property (nonatomic, copy, readonly) NSString *coverUrl;
+/// 图片类型暖场的跳转链接(可能为nil)
+@property (nonatomic, copy, readonly) NSString *coverHref;
 
 /// NGB 是否开启
 @property (nonatomic, readonly) BOOL isNgbEnabled;
@@ -37,7 +56,6 @@
 
 /// Qos 发送频率
 @property (nonatomic, copy, readonly) NSNumber *reportFreq;
-
 
 /**
  便利初始化方法

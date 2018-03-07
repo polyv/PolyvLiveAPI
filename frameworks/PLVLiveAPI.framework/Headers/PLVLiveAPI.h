@@ -10,6 +10,7 @@
 #import "PLVLiveConfig.h"
 #import "PLVLiveChannel.h"
 #import "PLVPushChannel.h"
+#import "PLVLiveReporter.h"
 
 /// SDK 通用错误码
 typedef NS_ENUM(NSInteger, PLVLiveErrorCode) {
@@ -124,17 +125,26 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
 #pragma mark -  直播推流相关接口
 
 /**
- 获取推流信息
+ 获取推流频道信息及地址
 
  @param channelId 频道号
  @param password 密码
  @param completion 请求完成，参数不能为 nil
  @param failure 请求失败
  */
-+ (void)loadStreamerInfoWithChannelId:(NSUInteger)channelId
-                             password:(NSString *)password
-                           completion:(void(^)(PLVPushChannel *channel))completion
-                              failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
++ (void)loadPushInfoWithChannelId:(NSUInteger)channelId
+                         password:(NSString *)password
+                       completion:(void(^)(PLVPushChannel *channel, NSString *rtmpUrl))completion
+                          failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+
+/**
+ 获取推流地址
+
+ @param channel 推流频道信息
+ @param completion 获取成功，参数不能为nil
+ */
++ (void)getRtmpUrlWithPushChannel:(PLVPushChannel *)channel
+                       completion:(void(^)(NSString *rtmpUrl))completion;
 
 /**
  设置推流为单流模式
@@ -271,4 +281,12 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
                           sessionId:(NSString *)sessionId
                          completion:(void (^)(NSArray *contentlist))completion
                             failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+
+#pragma mark - Deprecated
+
+/// 获取推流信息(废弃0.3.0版本以下使用)
++ (void)loadStreamerInfoWithChannelId:(NSUInteger)channelId
+                             password:(NSString *)password
+                           completion:(void(^)(PLVPushChannel *channel))completion
+                              failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure __deprecated;
 @end

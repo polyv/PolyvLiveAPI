@@ -15,10 +15,10 @@
 
 /// 频道号
 @property (nonatomic, copy, readonly) NSNumber *channelId;
-/// 推流地址
-@property (nonatomic, copy, readonly) NSString *rtmpUrl;
 /// 流名
 @property (nonatomic, copy, readonly) NSString *stream;
+/// 推流地址(废弃0.3.0版本以下使用)
+@property (nonatomic, copy, readonly) NSString *rtmpUrl __deprecated;
 
 /// 用户Id
 @property (nonatomic, copy, readonly) NSString *userId;
@@ -39,7 +39,8 @@
 @property (nonatomic, copy, readonly) NSString *ngbUrl;
 /// bakUrl URL
 @property (nonatomic, copy, readonly) NSString *bakUrl;
-
+/// suffix
+@property (nonatomic, copy, readonly) NSString *suffix;
 /// 推流频道信息
 @property (nonatomic, copy, readonly) NSDictionary *channelDict;
 
@@ -49,8 +50,8 @@
 + (instancetype)pushChannelWithJsonDict:(NSDictionary *)jsonDict;
 
 /**
- 设置 rtmpUrl 方法
+ 设置 rtmpUrl 方法(废弃0.3.0版本以下使用)
  */
-- (void)setRtmpUrl:(NSString *)rtmpUrl;
+- (void)setRtmpUrl:(NSString *)rtmpUrl __deprecated;
 
 @end
