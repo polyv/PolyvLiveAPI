@@ -191,16 +191,6 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
                                                   success:(void (^)(NSDictionary *responseDict))success
                                                   failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
 
-/**
- SocketIO心跳请求（废弃，SocketIO内部处理）
-
- @param socketId Socket Id
- @param success 请求成功
- @param failure 请求失败
- */
-+ (void)socketIOHeartbeatRequestWithSocketId:(NSString *)socketId
-                                     success:(void (^)(NSString *content))success
-                                     failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
 #pragma mark - 聊天室相关
 
 /**
@@ -284,7 +274,18 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
 
 #pragma mark - Deprecated
 
-/// 获取推流信息(废弃0.3.0版本以下使用)
+/**
+ SocketIO心跳请求（废弃，SocketIO内部处理）
+ 
+ @param socketId Socket Id
+ @param success 请求成功
+ @param failure 请求失败
+ */
++ (void)socketIOHeartbeatRequestWithSocketId:(NSString *)socketId
+                                     success:(void (^)(NSString *content))success
+                                     failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure __deprecated;
+
+/// 获取推流信息(废弃，0.3.0版本以下使用)
 + (void)loadStreamerInfoWithChannelId:(NSUInteger)channelId
                              password:(NSString *)password
                            completion:(void(^)(PLVPushChannel *channel))completion
