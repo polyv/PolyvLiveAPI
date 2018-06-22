@@ -44,6 +44,15 @@ typedef NS_ENUM(NSUInteger, PLVLiveCoverType) {
 @property (nonatomic, copy, readonly) NSString *coverUrl;
 /// 图片类型暖场的跳转链接(可能为nil)
 @property (nonatomic, copy, readonly) NSString *coverHref;
+    
+/// 多码率是否开启
+@property (nonatomic, readonly) BOOL isMultirateEnabled;
+/// 默认清晰度，多码率开启时使用
+@property (nonatomic, copy, readonly) NSString *defaultDefinition;
+/// 默认清晰度地址，多码率开启时使用
+@property (nonatomic, copy, readonly) NSString *defaultDefinitionUrl;
+/// 所有清晰度，多码率开启时使用
+@property (nonatomic, copy, readonly) NSArray<NSDictionary *> *definitions;
 
 /// NGB 是否开启
 @property (nonatomic, readonly) BOOL isNgbEnabled;
@@ -61,5 +70,12 @@ typedef NS_ENUM(NSUInteger, PLVLiveCoverType) {
  便利初始化方法
  */
 + (instancetype)liveChannelWithJsonDict:(NSDictionary *)jsonDict;
+
+/**
+ 更新默认清晰度
+
+ @param definition 清晰度
+ */
+- (void)updateDefaultDefinitionWithDefinition:(NSString *)definition;
 
 @end

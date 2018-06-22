@@ -210,13 +210,28 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
                                  failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
 
 /**
- 获取聊天室所有在线成员列表
-
+ 获取聊天室在线成员列表(最多一百条数据)
+ @warning 该方法可能会废弃，请使用 +requestChatRoomListUsersWithRoomId:page:length:completion:failure 替代
  @param roomId 房间号/频道号
  @param completion 请求完成，参数不能为 nil
  @param failure 请求失败
  */
 + (void)requestChatRoomListUsersWithRoomId:(NSUInteger)roomId
+                                completion:(void (^)(NSDictionary *listUsers))completion
+                                   failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+
+/**
+ 获取聊天室在线成员列表
+
+ @param roomId 房间号/频道号
+ @param page 页数，参数 0 等于 1
+ @param length 每一页数量，参数 0 等于 100
+ @param completion 请求完成，参数不能为 nil
+ @param failure 请求失败
+ */
++ (void)requestChatRoomListUsersWithRoomId:(NSUInteger)roomId
+                                      page:(NSUInteger)page
+                                    length:(NSUInteger)length
                                 completion:(void (^)(NSDictionary *listUsers))completion
                                    failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
 
