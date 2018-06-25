@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "PolyvLiveAPI"
-  s.version      = "0.3.0"
+  s.version      = "0.4.0"
   s.summary      = "Polyv iOS 直播观看、推流、聊天室相关接口."
 
   # This description is used to generate tags and improve search results.
@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/Zeaa/PolyvLiveAPI.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/polyv/PolyvLiveAPI.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
