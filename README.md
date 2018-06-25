@@ -2,7 +2,7 @@
 
 当前版本：
 
-- PolyvLiveAPI ~ 0.3.0+180315
+- PolyvLiveAPI ~ 0.4.0+180622
 
 Podfile 中添加
 
@@ -12,11 +12,19 @@ platform :ios, "8.0"
 use_frameworks!
 
 target 'YourApp' do
-	pod 'PolyvLiveAPI', '~> 0.3.0'      # Polyv live api.
+	pod 'PolyvLiveAPI', '~> 0.4.0'      # Polyv live api.
 end
 ```
 
 ## 历史版本
+
+### 0.4.0+180622
+
+- 新增 更新默认清晰度 接口 
+- 新增 直播信息多码率属性（兼容v2接口数据问题） 
+- 新增 获取聊天室在线成员列表 接口
+
+直接下载：[0.4.0+180622](http://repo.polyv.net/ios/download/liveAPI/PLVLiveAPI_0.4.0+180622.zip)
 
 ### 0.3.0-rc+180315
 
@@ -66,7 +74,7 @@ end
   - Qos接口版本号更新：iOS-livePlayerSDK2.2.0+180111
 
   直接下载：[0.1.3](http://repo.polyv.net/ios/download/liveAPI/0.1.3/PLVLiveAPI.framework.zip)
-  
+
   CocoaPods： `pod 'PolyvLiveAPI', '~> 0.1.3'`
 
 ### 0.1.2+180102
@@ -74,5 +82,5 @@ end
   - Qos接口版本号更新：iOS-livePlayerSDK2.1.2.180102
 
   直接下载：[0.1.2](http://repo.polyv.net/ios/download/liveAPI/0.1.2/PLVLiveAPI.framework.zip)
-  
+
   CocoaPods： `pod 'PolyvLiveAPI', '~> 0.1.2'`
