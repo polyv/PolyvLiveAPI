@@ -12,6 +12,11 @@
 #import "PLVPushChannel.h"
 #import "PLVLiveReporter.h"
 
+/// 直播加入连麦通知
+extern NSString * const PLVLiveLinkMicDidJoinNotification;
+/// 直播退出连麦通知
+extern NSString * const PLVLiveLinkMicDidLeaveNotification;
+
 /// SDK 通用错误码
 typedef NS_ENUM(NSInteger, PLVLiveErrorCode) {
     /// 参数无效/非法
