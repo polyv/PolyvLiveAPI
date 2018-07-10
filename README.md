@@ -2,7 +2,7 @@
 
 当前版本：
 
-- PolyvLiveAPI ~ 0.4.0+180622
+- PolyvLiveAPI ~ 0.4.1+180629
 
 Podfile 中添加
 
@@ -17,6 +17,12 @@ end
 ```
 
 ## 历史版本
+
+#### 0.4.1+180629
+
+- 新增直播加入连麦和退出连麦通知
+
+  直接下载：[0.4.1+180629](http://repo.polyv.net/ios/download/liveAPI/PLVLiveAPI_0.4.1+180629.zip)
 
 ### 0.4.0+180622
 
