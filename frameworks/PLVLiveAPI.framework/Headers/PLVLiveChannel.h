@@ -8,14 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
+/// 频道限制信息
+typedef NS_ENUM(NSUInteger, PLVLiveRestrictState) {
+    /// 未知（获取失败）
+    PLVLiveRestrictUnknown = -1,
+    /// 无限制（可正常播放）
+    PLVLiveRestrictNone    = 0,
+    /// 有限制（不可播放）
+    PLVLiveRestrictPlay    = 1,
+};
+
 /// 暖场类型
 typedef NS_ENUM(NSUInteger, PLVLiveCoverType) {
     /// 无暖场
-    PLVLiveCoverTypeNone,
+    PLVLiveCoverTypeNone  = 0,
     /// 图片类型
-    PLVLiveCoverTypeImage,
+    PLVLiveCoverTypeImage = 1,
     /// 视频类型
-    PLVLiveCoverTypeVideo,
+    PLVLiveCoverTypeVideo = 2,
 };
 
 /**
@@ -37,6 +47,11 @@ typedef NS_ENUM(NSUInteger, PLVLiveCoverType) {
 @property (nonatomic, copy, readonly) NSString *m3u8Url;
 /// 直播流名称
 @property (nonatomic, copy, readonly) NSString *stream;
+
+/// 直播限制状态
+@property (nonatomic, readonly) PLVLiveRestrictState restrictState;
+/// 限制信息：restrictState Unknown 时为 nil
+@property (nonatomic, copy, readonly) NSDictionary *restrictInfo;
 
 /// 暖场类型
 @property (nonatomic, readonly) PLVLiveCoverType coverType;
@@ -70,6 +85,13 @@ typedef NS_ENUM(NSUInteger, PLVLiveCoverType) {
  便利初始化方法
  */
 + (instancetype)liveChannelWithJsonDict:(NSDictionary *)jsonDict;
+
+/**
+ 更新频道限制信息
+    更新当前对象数据，异步返回 channel和当前调用对象为同一实例
+ @param completion 请求完成
+ */
+- (void)updateChannelRestrictInfo:(void (^)(PLVLiveChannel *channel))completion;
 
 /**
  更新默认清晰度

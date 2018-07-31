@@ -11,6 +11,7 @@
 #import "PLVLiveChannel.h"
 #import "PLVPushChannel.h"
 #import "PLVLiveReporter.h"
+#import "PLVChannelMenuInfo.h"
 
 /// 直播加入连麦通知
 extern NSString * const PLVLiveLinkMicDidJoinNotification;
@@ -73,7 +74,7 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
 /**
  获取直播频道信息
 
- @param userId 用户名
+ @param userId 用户Id
  @param channelId 频道号
  @param completion 请求完成，参数不能为 nil
  @param failure 请求失败
@@ -117,15 +118,28 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
                              failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
 
 /**
+ 获取频道约束信息
+
+ @param userId 用户Id
+ @param channelId 频道号
+ @param completion 请求完成，参数不能为 nil
+ @param failure 请求失败
+ */
++ (void)getChannelRestrictInfoWithUserId:(NSString *)userId
+                               channelId:(NSUInteger)channelId
+                              completion:(void (^)(NSDictionary *responseDict))completion
+                                 failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+
+/**
  获取频道咨询提问菜单状态
 
  @param channelId 频道号
  @param completion 获取成功，参数不能为 nil
  @param failure 获取失败
  */
-+ (void)getChannelInfoWithQuestionMenuStatus:(NSUInteger)channelId
-                                  completion:(void(^)(BOOL isOn))completion
-                                     failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
++ (void)getChannelMenuInfos:(NSUInteger)channelId
+                 completion:(void(^)(PLVChannelMenuInfo *channelMenuInfo))completion
+                    failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
 
 #pragma mark -  直播推流相关接口
 
@@ -310,4 +324,15 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
                              password:(NSString *)password
                            completion:(void(^)(PLVPushChannel *channel))completion
                               failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure __deprecated;
+
+/**
+ 获取频道咨询提问菜单状态(废弃，0.4.0版本以下使用，新版本使用 getChannelMenuInfos:completion:failure 接口)
+ 
+ @param channelId 频道号
+ @param completion 获取成功，参数不能为 nil
+ @param failure 获取失败
+ */
++ (void)getChannelInfoWithQuestionMenuStatus:(NSUInteger)channelId
+                                  completion:(void(^)(BOOL isOn))completion
+                                     failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
 @end
