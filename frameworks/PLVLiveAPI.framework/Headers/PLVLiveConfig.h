@@ -25,10 +25,15 @@ typedef NS_ENUM(NSUInteger, PLVLiveLogLevel) {
  */
 @interface PLVLiveConfig : NSObject
 
-/// polyv 用户参数
+/// polyv 云直播账号ID
+@property (nonatomic, strong, readonly) NSString *userId;
+/// polyv 云直播应用ID
 @property (nonatomic, strong, readonly) NSString *appId;
-/// polyv 用户参数
+/// polyv 云直播应用密匙
 @property (nonatomic, strong, readonly) NSString *appSecret;
+
+/// 当前房间号/频道号
+@property (nonatomic, strong) NSString *channelId;
 
 /// 统计后台用户Id
 @property (nonatomic, strong) NSString *param1;
@@ -59,9 +64,14 @@ typedef NS_ENUM(NSUInteger, PLVLiveLogLevel) {
 + (instancetype)sharedInstance;
 
 /**
- 用户参数：Polyv直播后台“API设置“中appId、appSecret参数
+ 用户参数：Polyv 后台，云直播->开发设置->身份认证：AppID、AppSecret参数
  */
 + (instancetype)liveConfigWithAppId:(NSString *)appId appSecret:(NSString *)appSecret;
+
+/**
+ 用户参数：Polyv 后台，云直播->开发设置->身份认证：userId、AppID、AppSecret参数
+ */
++ (instancetype)liveConfigWithUserId:(NSString *)userId appId:(NSString *)appId appSecret:(NSString *)appSecret;
 
 /**
  设置统计后台参数，便利生成该类的param1、param2、param4、param5属性

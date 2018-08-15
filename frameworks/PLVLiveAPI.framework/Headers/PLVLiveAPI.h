@@ -72,7 +72,7 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
 #pragma mark -  直播观看相关接口
 
 /**
- 获取直播频道信息
+ 获取直播频道信息（旧）
 
  @param userId 用户Id
  @param channelId 频道号
@@ -85,12 +85,30 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
                           failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
 
 /**
- 同上接口；backup，缓存时间较短
+ 获取直播频道信息（新）
+ 
+ @param userId 用户Id
+ @param channelId 频道号
+ @param completion 请求完成，参数不能为 nil
+ @param failure 请求失败
  */
-+ (void)loadChannelInfo_BUWithUserId:(NSString *)userId
-                           channelId:(NSUInteger)channelId
-                          completion:(void (^)(PLVLiveChannel *channel))completion
-                             failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
++ (void)loadChannelInfoOnceWithUserId:(NSString *)userId
+                            channelId:(NSUInteger)channelId
+                           completion:(void (^)(PLVLiveChannel *channel))completion
+                              failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+
+/**
+ 获取直播频道信息（自动重试，建议使用此接口）
+    主接口获取三次频道信息失败会自动切换至备用接口进行请求
+ @param userId 用户Id
+ @param channelId 频道号
+ @param completion 请求完成，参数不能为 nil
+ @param failure 请求失败
+ */
++ (void)loadChannelInfoRepeatedlyWithUserId:(NSString *)userId
+                                  channelId:(NSUInteger)channelId
+                                 completion:(void (^)(PLVLiveChannel *channel))completion
+                                    failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
 
 /**
  根据流名获取当前流状态
@@ -307,6 +325,13 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
                             failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
 
 #pragma mark - Deprecated
+/**
+ 获取直播频道信息（废弃，缓存较短，0.6.0版本以下）
+ */
++ (void)loadChannelInfo_BUWithUserId:(NSString *)userId
+                           channelId:(NSUInteger)channelId
+                          completion:(void (^)(PLVLiveChannel *channel))completion
+                             failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure __unavailable;
 
 /**
  SocketIO心跳请求（废弃，SocketIO内部处理）

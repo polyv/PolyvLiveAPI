@@ -2,7 +2,7 @@
 
 当前版本：
 
-- PolyvLiveAPI ~ 0.4.1+180629
+- PolyvLiveAPI ~ 0.6.0+180815
 
 Podfile 中添加
 
@@ -12,11 +12,23 @@ platform :ios, "8.0"
 use_frameworks!
 
 target 'YourApp' do
-	pod 'PolyvLiveAPI', '~> 0.4.0'      # Polyv live api.
+	pod 'PolyvLiveAPI', '~> 0.6.0'      # Polyv live api.
 end
 ```
 
 ## 历史版本
+
+### 0.6.0+180815
+
+- 新增获取频道信息接口及自动重试的接口
+
+- 废弃获取频道信息的备用接口
+
+- PLVLiveConfig 新增用户账号信息相关设置方法
+
+- 已知问题优化：内部使用静态方法防止不同SDK符号冲突问题
+
+  直接下载：[0.6.0+180815](http://repo.polyv.net/ios/download/liveAPI/PLVLiveAPI_0.6.0+180815.zip)
 
 ### 0.5.0+180730
 
