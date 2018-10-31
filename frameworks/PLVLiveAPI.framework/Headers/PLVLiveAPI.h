@@ -72,33 +72,7 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
 #pragma mark -  直播观看相关接口
 
 /**
- 获取直播频道信息（旧）
-
- @param userId 用户Id
- @param channelId 频道号
- @param completion 请求完成，参数不能为 nil
- @param failure 请求失败
- */
-+ (void)loadChannelInfoWithUserId:(NSString *)userId
-                        channelId:(NSUInteger)channelId
-                       completion:(void (^)(PLVLiveChannel *channel))completion
-                          failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
-
-/**
- 获取直播频道信息（新）
- 
- @param userId 用户Id
- @param channelId 频道号
- @param completion 请求完成，参数不能为 nil
- @param failure 请求失败
- */
-+ (void)loadChannelInfoOnceWithUserId:(NSString *)userId
-                            channelId:(NSUInteger)channelId
-                           completion:(void (^)(PLVLiveChannel *channel))completion
-                              failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
-
-/**
- 获取直播频道信息（自动重试，建议使用此接口）
+ 获取直播频道信息（自动重试，建议）
     主接口获取三次频道信息失败会自动切换至备用接口进行请求
  @param userId 用户Id
  @param channelId 频道号
@@ -109,6 +83,19 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
                                   channelId:(NSUInteger)channelId
                                  completion:(void (^)(PLVLiveChannel *channel))completion
                                     failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+
+/**
+ 获取直播频道信息（单次请求）
+ 
+ @param userId 用户Id
+ @param channelId 频道号
+ @param completion 请求完成，参数不能为 nil
+ @param failure 请求失败
+ */
++ (void)loadChannelInfoOnceWithUserId:(NSString *)userId
+                            channelId:(NSUInteger)channelId
+                           completion:(void (^)(PLVLiveChannel *channel))completion
+                              failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
 
 /**
  根据流名获取当前流状态
@@ -245,6 +232,24 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
                                 endIndex:(NSInteger)endIndex
                               completion:(void (^)(NSArray *historyList))completion
                                  failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+/**
+ 获取聊天室历史记录
+
+ @param roomId 房间号/频道号
+ @param startIndex 开始下标
+ @param endIndex 结束下标
+ @param fullMessage 是否返回图片消息
+ @param showIp 显示 IP 地址
+ @param completion 请求完成，参数不能为 nil
+ @param failure 请求失败
+ */
++ (void)requestChatRoomHistoryWithRoomId:(NSUInteger)roomId
+                              startIndex:(NSUInteger)startIndex
+                                endIndex:(NSInteger)endIndex
+                             fullMessage:(BOOL)fullMessage
+                                  showIp:(BOOL)showIp
+                              completion:(void (^)(NSArray *))completion
+                                 failure:(void (^)(PLVLiveErrorCode, NSString *))failure;
 
 /**
  获取聊天室在线成员列表(最多一百条数据)
@@ -325,6 +330,19 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
                             failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
 
 #pragma mark - Deprecated
+
+/**
+ 获取直播频道信息（旧，0.6.0版本以下）
+ 
+ @param userId 用户Id
+ @param channelId 频道号
+ @param completion 请求完成，参数不能为 nil
+ @param failure 请求失败
+ */
++ (void)loadChannelInfoWithUserId:(NSString *)userId
+                        channelId:(NSUInteger)channelId
+                       completion:(void (^)(PLVLiveChannel *channel))completion
+                          failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure __deprecated;
 /**
  获取直播频道信息（废弃，缓存较短，0.6.0版本以下）
  */
@@ -359,5 +377,5 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
  */
 + (void)getChannelInfoWithQuestionMenuStatus:(NSUInteger)channelId
                                   completion:(void(^)(BOOL isOn))completion
-                                     failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+                                     failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure __deprecated;
 @end

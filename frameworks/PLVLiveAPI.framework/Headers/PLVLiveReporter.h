@@ -23,7 +23,7 @@
 
 /**
  首次加载时长（接口二）
- @discussion 使用频道号的遍历方法，同上接口
+ @discussion 使用频道号的便利方法，同上接口
 
  @param channel 直播频道对象
  @param pid 播放器Id，每次播放产生的唯一Id
@@ -38,7 +38,7 @@
 
 /**
  二次缓冲时长（接口二）
- @discussion 使用频道号的遍历方法，同上接口
+ @discussion 使用频道号的便利方法，同上接口
 
  @param channel 直播频道对象
  @param pid 播放器Id，每次播放产生的唯一Id
@@ -53,7 +53,7 @@
 
 /**
  播放出错（接口二）
- @discussion 使用频道号的遍历方法，同上接口
+ @discussion 使用频道号的便利方法，同上接口
 
  @param channel 直播频道对象
  @param pid 播放器Id，每次播放产生的唯一Id
@@ -82,7 +82,7 @@
 
 /**
  播放信息统计（v2）（接口二）
- @discussion 使用频道号的遍历方法，同上接口
+ @discussion 使用频道号的便利方法，同上接口
 
  @param channel 直播频道对象
  @param pid 播放器Id，每次播放产生的唯一Id
