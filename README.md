@@ -12,65 +12,58 @@ platform :ios, "8.0"
 use_frameworks!
 
 target 'YourApp' do
-	pod 'PolyvLiveAPI', '~> 0.7.1'      # Polyv live api.
+    pod 'PolyvLiveAPI', '~> 0.7.1'      # Polyv live api.
 end
 ```
 
 ## 历史版本
 
-各版本下载可通过版本后的 直接地址 下载或在 github [releases](https://github.com/polyv/PolyvLiveAPI/releases) 中找到对应版本下载
+  各版本下载可通过版本后的 直接下载 地址或在 github [releases](https://github.com/polyv/PolyvLiveAPI/releases) 中找到对应版本下载
 
 ### 0.7.1+190221
 
-- 更新拉流地址及多码率获取逻辑
-
-- 修复枚举类型错误可能导致编译失败问题
+  - 更新拉流地址及多码率获取逻辑
+  - 修复枚举类型错误可能导致编译失败问题
 
   直接下载：[0.7.1+190221](http://repo.polyv.net/ios/download/liveAPI/PLVLiveAPI_0.7.1+190221.zip)
 
 ### 0.7.0+181031
 
-- 获取直播频道信息的备用接口地址更新（废弃旧接口）
-
-- 新增聊天室历史记录接口（更多参数）
-
-- 部分错误注释信息更新
+  - 获取直播频道信息的备用接口地址更新（废弃旧接口）
+  - 新增聊天室历史记录接口（更多参数）
+  - 部分错误注释信息更新
 
   直接下载：[0.7.0+181031](http://repo.polyv.net/ios/download/liveAPI/PLVLiveAPI_0.7.0+181031.zip)
 
 ### 0.6.0+180815
 
-- 新增获取频道信息接口及自动重试的接口
-
-- 废弃获取频道信息的备用接口
-
-- PLVLiveConfig 新增用户账号信息相关设置方法
-
-- 已知问题优化：内部使用静态方法防止不同SDK符号冲突问题
+  - 新增获取频道信息接口及自动重试的接口
+  - 废弃获取频道信息的备用接口
+  - PLVLiveConfig 新增用户账号信息相关设置方法
+  - 已知问题优化：内部使用静态方法防止不同SDK符号冲突问题
 
   直接下载：[0.6.0+180815](http://repo.polyv.net/ios/download/liveAPI/PLVLiveAPI_0.6.0+180815.zip)
 
 ### 0.5.0+180730
 
-- 新增获取自定义 TAB 接口
-
-- 新增频道限制信息接口；live channel 添加 直播限制相关属性信息
+  - 新增获取自定义 TAB 接口
+  - 新增频道限制信息接口；live channel 添加 直播限制相关属性信息
 
   直接下载：[0.5.0+180730](http://repo.polyv.net/ios/download/liveAPI/PLVLiveAPI_0.5.0+180730.zip)
 
 ### 0.4.1+180629
 
-- 新增直播加入连麦和退出连麦通知
+  - 新增直播加入连麦和退出连麦通知
 
   直接下载：[0.4.1+180629](http://repo.polyv.net/ios/download/liveAPI/PLVLiveAPI_0.4.1+180629.zip)
 
 ### 0.4.0+180622
 
-- 新增 更新默认清晰度 接口 
-- 新增 直播信息多码率属性（兼容v2接口数据问题） 
-- 新增 获取聊天室在线成员列表 接口
+  - 新增 更新默认清晰度 接口 
+  - 新增 直播信息多码率属性（兼容v2接口数据问题） 
+  - 新增 获取聊天室在线成员列表 接口
 
-直接下载：[0.4.0+180622](http://repo.polyv.net/ios/download/liveAPI/PLVLiveAPI_0.4.0+180622.zip)
+  直接下载：[0.4.0+180622](http://repo.polyv.net/ios/download/liveAPI/PLVLiveAPI_0.4.0+180622.zip)
 
 ### 0.3.0-rc+180315
 
