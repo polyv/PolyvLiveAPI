@@ -2,7 +2,7 @@
 
 当前版本：
 
-- PolyvLiveAPI ~ 0.7.0+181031
+- PolyvLiveAPI ~ 0.7.1+190221
 
 Podfile 中添加
 
@@ -12,11 +12,21 @@ platform :ios, "8.0"
 use_frameworks!
 
 target 'YourApp' do
-	pod 'PolyvLiveAPI', '~> 0.7.0'      # Polyv live api.
+	pod 'PolyvLiveAPI', '~> 0.7.1'      # Polyv live api.
 end
 ```
 
 ## 历史版本
+
+各版本下载可通过版本后的 直接地址 下载或在 github [releases](https://github.com/polyv/PolyvLiveAPI/releases) 中找到对应版本下载
+
+### 0.7.1+190221
+
+- 更新拉流地址及多码率获取逻辑
+
+- 修复枚举类型错误可能导致编译失败问题
+
+  直接下载：[0.7.1+190221](http://repo.polyv.net/ios/download/liveAPI/PLVLiveAPI_0.7.1+190221.zip)
 
 ### 0.7.0+181031
 

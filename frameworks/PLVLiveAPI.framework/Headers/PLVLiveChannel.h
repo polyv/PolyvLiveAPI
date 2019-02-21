@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 /// 频道限制信息
-typedef NS_ENUM(NSUInteger, PLVLiveRestrictState) {
+typedef NS_ENUM(NSInteger, PLVLiveRestrictState) {
     /// 未知（获取失败）
     PLVLiveRestrictUnknown = -1,
     /// 无限制（可正常播放）
@@ -41,12 +41,27 @@ typedef NS_ENUM(NSUInteger, PLVLiveCoverType) {
 @property (nonatomic, copy, readonly) NSString *sessionId;
 /// 直播频道名称
 @property (nonatomic, copy, readonly) NSString *name;
-/// 直播 FLV 地址
-@property (nonatomic, copy, readonly) NSString *flvUrl;
-/// 直播 M3U8 地址
-@property (nonatomic, copy, readonly) NSString *m3u8Url;
-/// 直播流名称
+/// 直播流名
 @property (nonatomic, copy, readonly) NSString *stream;
+
+/// 直播默认FLV拉流地址
+@property (nonatomic, copy, readonly) NSString *flvUrl;
+/// 直播默认备用FLV拉流地址 (Maybe nil)
+@property (nonatomic, copy, readonly) NSString *bakFlvUrl;
+/// 直播默认M3U8拉流地址
+@property (nonatomic, copy, readonly) NSString *m3u8Url;
+
+/// 多码率是否开启
+@property (nonatomic, readonly) BOOL isMultirateEnabled;
+/// 默认清晰度，多码率开启时使用
+@property (nonatomic, copy, readonly) NSString *defaultDefinition;
+/// 默认清晰度地址，多码率开启时使用
+@property (nonatomic, copy, readonly) NSString *defaultDefinitionUrl;
+/// 所有清晰度，多码率开启时使用
+@property (nonatomic, copy, readonly) NSArray<NSDictionary *> *definitions;
+
+/// 直播线路地址数组
+@property (nonatomic, copy, readonly) NSArray<NSDictionary *> *lines;
 
 /// 直播限制状态
 @property (nonatomic, readonly) PLVLiveRestrictState restrictState;
@@ -59,24 +74,6 @@ typedef NS_ENUM(NSUInteger, PLVLiveCoverType) {
 @property (nonatomic, copy, readonly) NSString *coverUrl;
 /// 图片类型暖场的跳转链接(可能为nil)
 @property (nonatomic, copy, readonly) NSString *coverHref;
-    
-/// 多码率是否开启
-@property (nonatomic, readonly) BOOL isMultirateEnabled;
-/// 默认清晰度，多码率开启时使用
-@property (nonatomic, copy, readonly) NSString *defaultDefinition;
-/// 默认清晰度地址，多码率开启时使用
-@property (nonatomic, copy, readonly) NSString *defaultDefinitionUrl;
-/// 所有清晰度，多码率开启时使用
-@property (nonatomic, copy, readonly) NSArray<NSDictionary *> *definitions;
-
-/// NGB 是否开启
-@property (nonatomic, readonly) BOOL isNgbEnabled;
-/// 防盗链是否开启
-@property (nonatomic, readonly) BOOL isUrlProtected;
-/// NGB URL
-@property (nonatomic, copy, readonly) NSString *ngbUrl;
-/// bakUrl URL
-@property (nonatomic, copy, readonly) NSString *bakUrl;
 
 /// Qos 发送频率
 @property (nonatomic, copy, readonly) NSNumber *reportFreq;
