@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "PolyvLiveAPI"
-  s.version      = "0.7.1"
+  s.version      = "0.7.2"
   s.summary      = "Polyv iOS 直播观看、推流、聊天室相关接口"
   # s.description  = <<-DESC
   #                  DESC
