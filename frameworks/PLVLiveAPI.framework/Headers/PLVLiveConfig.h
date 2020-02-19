@@ -53,6 +53,11 @@ typedef NS_ENUM(NSUInteger, PLVLiveLogLevel) {
 + (NSString *)liveApiVersion;
 
 /**
+ LiveAPI 版本名称
+ */
++ (NSString *)liveApiName;
+
+/**
  播放器版本，调用+setPlayerVersion:方法后生成，否则返回 LiveAPI 版本
  */
 + (NSString *)playerVersion;

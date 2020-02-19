@@ -170,19 +170,6 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
 + (void)getRtmpUrlWithPushChannel:(PLVPushChannel *)channel
                        completion:(void(^)(NSString *rtmpUrl))completion;
 
-/**
- 设置推流为单流模式
-
- @param channelId 频道号
- @param stream 当前频道号的流名
- @param success 设置成功，参数不能为 nil
- @param failure 设置失败
- */
-+ (void)configAloneStreamModeWithChannelId:(NSUInteger)channelId
-                                    stream:(NSString *)stream
-                                   success:(void (^)(NSString *sessionId))success
-                                   failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
-
 #pragma mark - 小班课相关接口
 
 /**
@@ -330,6 +317,19 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
                             failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
 
 #pragma mark - Deprecated
+
+/**
+ 设置推流为单流模式（0.7.1版本之后不再使用）
+ 
+ @param channelId 频道号
+ @param stream 当前频道号的流名
+ @param success 设置成功，参数不能为 nil
+ @param failure 设置失败
+ */
++ (void)configAloneStreamModeWithChannelId:(NSUInteger)channelId
+                                    stream:(NSString *)stream
+                                   success:(void (^)(NSString *sessionId))success
+                                   failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure __deprecated;
 
 /**
  获取直播频道信息（旧，0.6.0版本以下）
