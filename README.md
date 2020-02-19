@@ -35,6 +35,11 @@ end
 
   直接下载：[0.7.0+181031](http://repo.polyv.net/ios/download/liveAPI/PLVLiveAPI_0.7.0+181031.zip)
 
+### 0.6.1+200214
+
+  - 新增 user-agent 前缀
+  - 更新 mic-auth API 为  GET 请求
+
 ### 0.6.0+180815
 
   - 新增获取频道信息接口及自动重试的接口
