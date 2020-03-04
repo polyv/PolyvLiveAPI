@@ -20,6 +20,10 @@ end
 
   各版本下载可通过版本后的 直接下载 地址或在 github [releases](https://github.com/polyv/PolyvLiveAPI/releases) 中找到对应版本下载
 
+### 0.7.2+200304
+
+- 新增获取 chatToken API
+
 ### 0.7.2+200219
 
 - 新增 API 请求 user-agent 前缀

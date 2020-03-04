@@ -202,6 +202,15 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
                                                   success:(void (^)(NSDictionary *responseDict))success
                                                   failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
 
+/// Socket 授权接口（>=0.7.3）
+/// @param channelId 频道号
+/// @param role 用户角色：teacher\admin\guest\assistant\viewer
+/// @param userId 用户Id
+/// @param appId appId
+/// @param appSecret appSecret
+/// @param completion 请求完成
++ (void)getChatTokenWithChannelId:(NSInteger)channelId role:(NSString *)role userId:(NSString *)userId appld:(NSString *)appId appSecret:(NSString *)appSecret completion:(void (^)(NSDictionary *responseDict, NSError *error))completion;
+
 #pragma mark - 聊天室相关
 
 /**
