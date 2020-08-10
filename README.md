@@ -20,6 +20,17 @@ end
 
   各版本下载可通过版本后的 直接下载 地址或在 github [releases](https://github.com/polyv/PolyvLiveAPI/releases) 中找到对应版本下载
 
+### 0.7.3+200810
+
++ 获取推流频道信息及地址 API channelId 参数类型变更为字符串
+
+  ```objective-c
+  + (void)loadPushInfoWithChannelId:(NSString *)channelId
+                           password:(NSString *)password
+                         completion:(void(^)(PLVPushChannel *channel, NSString *rtmpUrl))completion
+                            failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+  ```
+
 ### 0.7.2+200304
 
 - 新增获取 chatToken API

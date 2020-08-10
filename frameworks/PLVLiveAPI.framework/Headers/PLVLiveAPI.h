@@ -156,7 +156,7 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
  @param completion 请求完成，参数不能为 nil
  @param failure 请求失败
  */
-+ (void)loadPushInfoWithChannelId:(NSUInteger)channelId
++ (void)loadPushInfoWithChannelId:(NSString *)channelId
                          password:(NSString *)password
                        completion:(void(^)(PLVPushChannel *channel, NSString *rtmpUrl))completion
                           failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;

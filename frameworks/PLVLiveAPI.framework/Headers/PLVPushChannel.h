@@ -13,8 +13,12 @@
  */
 @interface PLVPushChannel : NSObject
 
-/// 频道号
-@property (nonatomic, copy, readonly) NSNumber *channelId;
+/// 频道号（主账号id）
+@property (nonatomic, copy, readonly) NSString *channelId;
+/// 当前账号（主账号或子账号id）
+@property (nonatomic, copy, readonly) NSString *accountId;
+/// 子账号列表
+@property (nonatomic, copy, readonly) NSArray<NSDictionary *> *channelAccountList;
 /// 流名
 @property (nonatomic, copy, readonly) NSString *stream;
 /// 推流地址(废弃0.3.0版本以下使用)
