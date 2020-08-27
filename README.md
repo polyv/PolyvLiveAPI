@@ -2,7 +2,7 @@
 
 当前版本：
 
-- PolyvLiveAPI ~ 0.7.1+190221
+- PolyvLiveAPI ~ 0.7.4+200810
 
 Podfile 中添加
 
@@ -20,7 +20,12 @@ end
 
   各版本下载可通过版本后的 直接下载 地址或在 github [releases](https://github.com/polyv/PolyvLiveAPI/releases) 中找到对应版本下载
 
-### 0.7.3+200810
+### 0.7.5
+
+- 修复 qos param 参数过长导致发送失败问题
+- cahttoken 部分参数提交前编码
+
+### 0.7.4+200810
 
 + 获取推流频道信息及地址 API channelId 参数类型变更为字符串
 
@@ -31,7 +36,7 @@ end
                             failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
   ```
 
-### 0.7.2+200304
+### 0.7.3+200304
 
 - 新增获取 chatToken API
 
@@ -114,6 +119,7 @@ end
   - PLVLiveReporter
     - 新增播放信息统计 v2 版本
     
+
   直接下载：[0.3.0+180306](http://repo.polyv.net/ios/download/liveAPI/PLVLiveAPI.framework_0.3.0+180306.zip)
 
 ### 0.2.0+180125

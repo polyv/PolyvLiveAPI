@@ -205,7 +205,7 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
 /// Socket 授权接口（>=0.7.3）
 /// @param channelId 频道号
 /// @param role 用户角色：teacher\admin\guest\assistant\viewer
-/// @param userId 用户Id
+/// @param userId 聊天室用户ID
 /// @param appId appId
 /// @param appSecret appSecret
 /// @param completion 请求完成
