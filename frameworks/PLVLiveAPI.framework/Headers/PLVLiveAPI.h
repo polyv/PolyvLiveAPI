@@ -170,6 +170,22 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
 + (void)getRtmpUrlWithPushChannel:(PLVPushChannel *)channel
                        completion:(void(^)(NSString *rtmpUrl))completion;
 
+/// 设置流模式
+/// @param channelId 频道号
+/// @param stream 流名
+/// @param sessionId 场次Id
+/// @param videowidth 视频宽
+/// @param videoheight 视频高
+/// @param success 请求完成
+/// @param failure 请求失败
++ (void)notifyStreamModeWithChannelId:(NSString *)channelId
+                               stream:(NSString *)stream
+                            sessionId:(NSString *)sessionId
+                           videowidth:(NSUInteger)videowidth
+                          videoheight:(NSUInteger)videoheight
+                              success:(void (^)(NSString *responseCont))success
+                              failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
+
 #pragma mark - 小班课相关接口
 
 /**
@@ -325,66 +341,4 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
                          completion:(void (^)(NSArray *contentlist))completion
                             failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure;
 
-#pragma mark - Deprecated
-
-/**
- 设置推流为单流模式（0.7.1版本之后不再使用）
- 
- @param channelId 频道号
- @param stream 当前频道号的流名
- @param success 设置成功，参数不能为 nil
- @param failure 设置失败
- */
-+ (void)configAloneStreamModeWithChannelId:(NSUInteger)channelId
-                                    stream:(NSString *)stream
-                                   success:(void (^)(NSString *sessionId))success
-                                   failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure __deprecated;
-
-/**
- 获取直播频道信息（旧，0.6.0版本以下）
- 
- @param userId 用户Id
- @param channelId 频道号
- @param completion 请求完成，参数不能为 nil
- @param failure 请求失败
- */
-+ (void)loadChannelInfoWithUserId:(NSString *)userId
-                        channelId:(NSUInteger)channelId
-                       completion:(void (^)(PLVLiveChannel *channel))completion
-                          failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure __deprecated;
-/**
- 获取直播频道信息（废弃，缓存较短，0.6.0版本以下）
- */
-+ (void)loadChannelInfo_BUWithUserId:(NSString *)userId
-                           channelId:(NSUInteger)channelId
-                          completion:(void (^)(PLVLiveChannel *channel))completion
-                             failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure __unavailable;
-
-/**
- SocketIO心跳请求（废弃，SocketIO内部处理）
- 
- @param socketId Socket Id
- @param success 请求成功
- @param failure 请求失败
- */
-+ (void)socketIOHeartbeatRequestWithSocketId:(NSString *)socketId
-                                     success:(void (^)(NSString *content))success
-                                     failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure __deprecated;
-
-/// 获取推流信息(废弃，0.3.0版本以下使用)
-+ (void)loadStreamerInfoWithChannelId:(NSUInteger)channelId
-                             password:(NSString *)password
-                           completion:(void(^)(PLVPushChannel *channel))completion
-                              failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure __deprecated;
-
-/**
- 获取频道咨询提问菜单状态(废弃，0.4.0版本以下使用，新版本使用 getChannelMenuInfos:completion:failure 接口)
- 
- @param channelId 频道号
- @param completion 获取成功，参数不能为 nil
- @param failure 获取失败
- */
-+ (void)getChannelInfoWithQuestionMenuStatus:(NSUInteger)channelId
-                                  completion:(void(^)(BOOL isOn))completion
-                                     failure:(void (^)(PLVLiveErrorCode errorCode, NSString *description))failure __deprecated;
 @end

@@ -44,6 +44,8 @@
 ///频道菜单列表
 @property (nonatomic, strong, readonly) NSArray<PLVChannelMenu*> *channelMenus;
 
+@property (nonatomic, copy, readonly) NSDictionary *rawData;
+
 /**
  便利初始化方法
  */
