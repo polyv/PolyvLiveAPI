@@ -173,14 +173,12 @@ typedef NS_ENUM(NSInteger, PLVLiveStreamState) {
 /// 设置流模式
 /// @param channelId 频道号
 /// @param stream 流名
-/// @param sessionId 场次Id
 /// @param videowidth 视频宽
 /// @param videoheight 视频高
 /// @param success 请求完成
 /// @param failure 请求失败
 + (void)notifyStreamModeWithChannelId:(NSString *)channelId
                                stream:(NSString *)stream
-                            sessionId:(NSString *)sessionId
                            videowidth:(NSUInteger)videowidth
                           videoheight:(NSUInteger)videoheight
                               success:(void (^)(NSString *responseCont))success

@@ -20,7 +20,7 @@ end
 
   各版本下载可通过版本后的 直接下载 地址或在 github [releases](https://github.com/polyv/PolyvLiveAPI/releases) 中找到对应版本下载
 
-#### 0.8.0
+#### 0.8.1
 
 - 新增设置流模式 API +notifyStreamModeWithChannelId:stream:...
 - 删除已废弃 API
