@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "PolyvLiveAPI"
-  s.version      = "0.8.1"
+  s.version      = "0.9.0"
   s.summary      = "Polyv iOS 直播观看、推流、聊天室相关接口"
   # s.description  = <<-DESC
   #                  DESC
@@ -16,16 +16,16 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/polyv/PolyvLiveAPI"
   s.license      = { :type => "MIT" }
   s.author       = { "ftao" => "fft1026@163.com" }
-  s.platform     = :ios, "8.0"
+  s.platform     = :ios, "9.0"
 
   s.source       = { :git => "https://github.com/polyv/PolyvLiveAPI.git", :tag => "#{s.version}" }
 
   # s.source_files  = "Classes", "Classes/**/*.{h,m}"
   # s.exclude_files = "Classes/Exclude"
-  s.vendored_frameworks = 'frameworks/PLVLiveAPI.framework'
+  s.vendored_frameworks = 'frameworks/PLVLiveSDK.framework'
 
   # s.public_header_files = "Classes/**/*.h"
-
+  s.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64' }
   # s.framework  = "SomeFramework"
   # s.frameworks = "SomeFramework", "AnotherFramework"
 

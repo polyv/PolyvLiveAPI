@@ -7,7 +7,7 @@
 Podfile 中添加
 
 ```ruby
-platform :ios, "8.0"
+platform :ios, "9.0"
 
 use_frameworks!
 
@@ -19,6 +19,9 @@ end
 ## 历史版本
 
   各版本下载可通过版本后的 直接下载 地址或在 github [releases](https://github.com/polyv/PolyvLiveAPI/releases) 中找到对应版本下载
+  
+#### 0.9.0
+- 重构sdk，只保留demo现有功能的接口
 
 #### 0.8.1
 
